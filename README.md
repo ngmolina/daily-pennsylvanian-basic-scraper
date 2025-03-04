@@ -135,3 +135,26 @@ But it is important to use it responsibly and ethically. Here are some guideline
 9. Document your scraping process thoroughly for replicability, transparency and accountability.
 
 10. Continuously re-evaluate your scraping program against applicable laws and ethical principles.
+
+## Scraper Modifications
+
+### Multi-Section Headline Collection
+
+I've modified the original scraper to collect headlines from multiple sections of The Daily Pennsylvanian website instead of just the main headline. 
+
+1. **Comprehensive Coverage**: By collecting headlines from the main, news, sports, and opinion sections, the scraper provides a more complete picture of campus life and news coverage over time.
+
+2. **Improved Data Resilience**: If one section's structure changes or a particular headline is unavailable, the scraper can still successfully collect data from other sections, ensuring continuous data collection.
+
+3. **Multiple Extraction Methods**: For each section, the scraper implements multiple extraction strategies:
+   - Primary method: Targeting specific HTML elements with their unique class identifiers
+   - Secondary method: Finding section headers and extracting nearby headlines
+   - Fallback method: Using URL patterns in links to identify section-specific content
+
+4. **Robust Error Handling**: Each extraction attempt is wrapped in its own try-except block, preventing failures in one section from affecting others. The scraper logs detailed information about each extraction attempt, making it easier to debug and maintain.
+
+5. **Backup Data Collection**: If all specific extraction methods fail, a generic backup method attempts to find any headline on the page, ensuring we still capture some data even during major site redesigns.
+
+This approach significantly improves the scraper's resilience to website changes, which is crucial for a long-running data collection project. This also allows for easy future extensions to capture additional sections or data points as needed.
+
+
